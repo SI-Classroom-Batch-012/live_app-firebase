@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "412720790511",
+    "project_id": "fir-live-batch-12",
+    "storage_bucket": "fir-live-batch-12.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412720790511:android:35748eb508d660cf6e541a",
+        "android_client_info": {
+          "package_name": "com.example.firebaselive"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1eBv7fVWFfq_7hCum01C5qc2cBAgJAKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
