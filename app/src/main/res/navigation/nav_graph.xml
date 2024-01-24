@@ -15,4 +15,9 @@
         android:name="com.example.firebaselive.ui.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="com.example.firebaselive.ui.NotesFragment"
+        android:label="fragment_notes"
+        tools:layout="@layout/fragment_notes" />
 </navigation>
