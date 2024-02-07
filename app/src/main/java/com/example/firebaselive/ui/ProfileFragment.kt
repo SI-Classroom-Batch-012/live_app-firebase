@@ -20,12 +20,13 @@ class ProfileFragment : Fragment() {
     private val viewmodel: MainViewmodel by activityViewModels()
     private lateinit var binding: FragmentProfileBinding
 
-    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-        if (uri != null) {
-           //uri enthält Verweis auf unser Bild, damit können wir weiterarbeiten
-            viewmodel.uploadProfilePicture(uri)
+    private val getContent =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            if (uri != null) {
+                //uri enthält Verweis auf unser Bild, damit können wir weiterarbeiten
+                viewmodel.uploadProfilePicture(uri)
+            }
         }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,20 +43,20 @@ class ProfileFragment : Fragment() {
             viewmodel.logout()
         }
 
-        viewmodel.user.observe(viewLifecycleOwner){
-            if(it != null){
+        viewmodel.user.observe(viewLifecycleOwner) {
+            if (it != null) {
                 //binding.userTV.text = it.uid
             } else {
                 findNavController().navigate(R.id.loginFragment)
             }
         }
 
-        viewmodel.profileRef.addSnapshotListener{    snapshot, error ->
+        viewmodel.profileRef.addSnapshotListener { snapshot, error ->
 
             val profile = snapshot?.toObject(Profile::class.java)!!
             binding.userTV.text = profile.isPremium.toString()
 
-            if(profile.profilePicture != ""){
+            if (profile.profilePicture != "") {
                 binding.profileIV.load(profile.profilePicture)
             }
         }

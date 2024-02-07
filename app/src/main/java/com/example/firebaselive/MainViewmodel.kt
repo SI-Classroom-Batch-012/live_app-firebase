@@ -34,7 +34,6 @@ class MainViewmodel : ViewModel() {
     lateinit var notesRef: CollectionReference
 
     init {
-
         setupUserEnv()
     }
 
