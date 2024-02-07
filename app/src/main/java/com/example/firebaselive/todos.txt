@@ -1,0 +1,24 @@
+
+
+
+Laden von Daten aus Firebase
+
+    - Laden von Chats
+        - (done) Laden von allen Chats
+        - Laden von Chats des eingeloggten Users
+        - Anzeigen von Chats
+        - Chat auswählen
+    - Laden von Messages
+        - Laden von allen Messages in einem Chat
+        - Anzeigen von Messages
+        - Anzeigen von Timestamp
+        - Anzeigen ob die Nachricht von dem User selber gesendet wurde
+
+Chat erstellen
+    - (done) Chat mit gegebener UserId erstellen
+    - Überprüfung ob es diesen Chat schon gibt
+    - Wenn Chat bereits existeirt, lade den vorhandenen Chat
+    - User auswählen?
+
+
+

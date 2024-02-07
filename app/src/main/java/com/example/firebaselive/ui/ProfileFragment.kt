@@ -69,6 +69,10 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.notesFragment)
         }
 
+        binding.chatBTN.setOnClickListener {
+            findNavController().navigate(R.id.chatListFragment)
+        }
+
     }
 
 }

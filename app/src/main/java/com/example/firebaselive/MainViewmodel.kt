@@ -4,6 +4,8 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.firebaselive.model.Chat
+import com.example.firebaselive.model.Message
 import com.example.firebaselive.model.Note
 import com.example.firebaselive.model.Profile
 import com.google.firebase.Firebase
@@ -21,6 +23,9 @@ class MainViewmodel : ViewModel() {
     val firestore = Firebase.firestore
     val storage = Firebase.storage
 
+
+    //region FirebaseUserManagement
+
     private val _user: MutableLiveData<FirebaseUser?> = MutableLiveData()
     val user: LiveData<FirebaseUser?>
         get() = _user
@@ -36,9 +41,6 @@ class MainViewmodel : ViewModel() {
     init {
         setupUserEnv()
     }
-
-    //region FirebaseUserManagement
-
 
     //Richtet die Variablen ein die erst eingerichtet werden können
     //wenn der User eingeloggt ist
@@ -106,6 +108,37 @@ class MainViewmodel : ViewModel() {
         }
     }
 
+    //endregion
+
+    //region FirebaseDataManagement
+
+    val chatsRef = firestore.collection("chats")
+
+    fun createChat(userId: String) {
+
+        val chat = Chat(
+            listOf(
+                userId,
+                auth.currentUser!!.uid
+            )
+        )
+
+        firestore.collection("chats").add(chat)
+
+    }
+
+    fun addMessageToChat(message: String, chatId: String) {
+
+        val message = Message(
+            content = message,
+            senderId = auth.currentUser!!.uid
+        )
+
+        firestore.collection("chats").document(chatId).collection("messages").add(message)
+
+    }
+
+
     fun saveNote(title: String, content: String) {
 
         val newNote = Note(
@@ -115,6 +148,7 @@ class MainViewmodel : ViewModel() {
 
         notesRef.add(newNote)
     }
+
 
     //endregion
 
