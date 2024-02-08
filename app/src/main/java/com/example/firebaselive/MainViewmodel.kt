@@ -41,7 +41,9 @@ class MainViewmodel : ViewModel() {
 
     init {
         setupUserEnv()
-        Log.d("userId", auth.currentUser!!.uid)
+        if(auth.currentUser != null) {
+            Log.d("userId", auth.currentUser!!.uid)
+        }
     }
 
     //Richtet die Variablen ein die erst eingerichtet werden können

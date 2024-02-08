@@ -79,6 +79,7 @@ class ChatListFragment : Fragment() {
             }
 
             dialogBuilder.show()
+
         }
     }
 
