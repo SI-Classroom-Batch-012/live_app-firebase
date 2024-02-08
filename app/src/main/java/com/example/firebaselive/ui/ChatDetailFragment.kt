@@ -35,7 +35,7 @@ class ChatDetailFragment : Fragment() {
 
         viewmodel.getMessageRef(chatId).addSnapshotListener { value, error ->
             if(error == null){
-                val messageList : List<Message> = value!!.toObjects(Message::class.java)
+                val messageList : List<Message> = value!!.toObjects(Message::class.java).sortedBy { it.timestamp }
 
                 val adapter = MessageAdapter(messageList, viewmodel.auth.currentUser!!.uid)
                 binding.messagesRV.adapter = adapter
