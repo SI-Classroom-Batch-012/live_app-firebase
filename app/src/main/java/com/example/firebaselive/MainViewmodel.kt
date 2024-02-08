@@ -1,6 +1,7 @@
 package com.example.firebaselive
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -40,6 +41,7 @@ class MainViewmodel : ViewModel() {
 
     init {
         setupUserEnv()
+        Log.d("userId", auth.currentUser!!.uid)
     }
 
     //Richtet die Variablen ein die erst eingerichtet werden können
@@ -114,6 +116,8 @@ class MainViewmodel : ViewModel() {
 
     val chatsRef = firestore.collection("chats")
 
+
+
     fun createChat(userId: String) {
 
         val chat = Chat(
@@ -124,7 +128,6 @@ class MainViewmodel : ViewModel() {
         )
 
         firestore.collection("chats").add(chat)
-
     }
 
     fun addMessageToChat(message: String, chatId: String) {
@@ -135,7 +138,10 @@ class MainViewmodel : ViewModel() {
         )
 
         firestore.collection("chats").document(chatId).collection("messages").add(message)
+    }
 
+    fun getMessageRef(chatId: String): CollectionReference {
+        return firestore.collection("chats").document(chatId).collection("messages")
     }
 
 

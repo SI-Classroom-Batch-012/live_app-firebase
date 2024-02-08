@@ -2,23 +2,25 @@
 
 
 Laden von Daten aus Firebase
-
     - Laden von Chats
         - (done) Laden von allen Chats
-        - Laden von Chats des eingeloggten Users
-        - Anzeigen von Chats
-        - Chat auswählen
+        - (done) Mehrere Chats als Testdaten erstellen
+        - (done) Laden von Chats des eingeloggten Users
+        - (done) Anzeigen von Chats
+        - (done) Chat auswählen -> Weiterleitung in DetailFragment
     - Laden von Messages
-        - Laden von allen Messages in einem Chat
-        - Anzeigen von Messages
+        - (done) Laden von allen Messages in einem Chat
+        - (done) Anzeigen von Messages
         - Anzeigen von Timestamp
-        - Anzeigen ob die Nachricht von dem User selber gesendet wurde
+        - (done) Anzeigen ob die Nachricht von dem User selber gesendet wurde
+    - Laden von Profilen
 
 Chat erstellen
     - (done) Chat mit gegebener UserId erstellen
-    - Überprüfung ob es diesen Chat schon gibt
-    - Wenn Chat bereits existeirt, lade den vorhandenen Chat
-    - User auswählen?
+    - (Überprüfung ob es diesen Chat schon gibt)
+    - (Wenn Chat bereits existiert, lade den vorhandenen Chat)
+    - User auswählen? -> User Id eingeben
+    - Dialog um neuen Chat zu erstellen
 
 
 

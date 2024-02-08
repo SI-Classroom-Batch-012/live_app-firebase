@@ -1,11 +1,13 @@
 package com.example.firebaselive.ui.adapter
 
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.firebaselive.databinding.MessageItemBinding
+import com.example.firebaselive.model.Message
 
-class MessageAdapter (val dataset: List<*>) : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
+class MessageAdapter (val dataset: List<Message>, val userId: String) : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
     inner class MessageViewHolder(val binding: MessageItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -21,6 +23,18 @@ class MessageAdapter (val dataset: List<*>) : RecyclerView.Adapter<MessageAdapte
 
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         val item = dataset[position]
+
+        holder.binding.messageTV.text = item.content
+
+        val myMessage: Boolean = (item.senderId == userId)
+
+        if(myMessage){
+            //Nachricht rechts
+            holder.binding.messageOuterLL.gravity = Gravity.RIGHT
+        } else {
+            //Nachricht links
+            holder.binding.messageOuterLL.gravity = Gravity.LEFT
+        }
 
     }
 }

@@ -3,9 +3,11 @@ package com.example.firebaselive.ui.adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.firebaselive.databinding.ChatItemBinding
 import com.example.firebaselive.model.Chat
+import com.example.firebaselive.ui.ChatListFragmentDirections
 
 class ChatAdapter (val dataset: List<Pair<String, Chat>>) : RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
 
@@ -28,7 +30,12 @@ class ChatAdapter (val dataset: List<Pair<String, Chat>>) : RecyclerView.Adapter
         val chat = item.second
 
         holder.binding.chatTV.text = chatId
-        Log.d("ChatData", "$item")
+
+        holder.binding.chatCV.setOnClickListener {
+
+            holder.itemView.findNavController().navigate(ChatListFragmentDirections.actionChatListFragmentToChatDetailFragment(chatId))
+
+        }
 
     }
 }

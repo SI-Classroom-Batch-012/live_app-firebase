@@ -1,19 +1,17 @@
 package com.example.firebaselive.ui
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.fragment.app.activityViewModels
-import com.example.firebaselive.DateUtils
 import com.example.firebaselive.MainViewmodel
-import com.example.firebaselive.R
 import com.example.firebaselive.databinding.FragmentChatListBinding
-import com.example.firebaselive.databinding.FragmentNotesBinding
 import com.example.firebaselive.model.Chat
-import com.example.firebaselive.model.Note
 import com.example.firebaselive.ui.adapter.ChatAdapter
 
 class ChatListFragment : Fragment() {
@@ -35,8 +33,8 @@ class ChatListFragment : Fragment() {
         //region testcode
 
         //Später noch über UI ausgewählt
-        val userId = "kj7nyq3P9PVCYrEKIblYjjCVE5y1"
-        //viewmodel.createChat(userId)
+//        val userId = "qqShJpe2K6XNW6f9sMrDtlms5U72"
+//        viewmodel.createChat(userId)
 
 //        viewmodel.addMessageToChat("Hallo Firebase", "5EsAeuMmAJcchCghq6Mq")
 
@@ -44,23 +42,43 @@ class ChatListFragment : Fragment() {
 
 
         viewmodel.chatsRef.addSnapshotListener { value, error ->
-            Log.d("SnapshotListener1", "$error")
+
             if(error == null) {
 
-                Log.d("SnapshotListener2", "$error")
-
-//                val chatList = value?.toObjects(Chat::class.java)!!
                 val chatList : List<Pair<String, Chat>> = value!!.documents.map {
                     Pair(
                         it.id,
                         it.toObject(Chat::class.java)!!
                     )
                 }
-                Log.d("SnapshotListener3", "$chatList , $error")
 
-                val adapter = ChatAdapter(chatList)
+                val filteredChatList = chatList.filter {
+                    it.second.userList.contains(viewmodel.auth.currentUser!!.uid)
+                }
+
+                val adapter = ChatAdapter(filteredChatList)
                 binding.chatsRV.adapter = adapter
             }
+        }
+
+
+        binding.createChatBTN.setOnClickListener {
+
+            val dialogBuilder = AlertDialog.Builder(requireContext())
+
+            val editText = EditText(requireContext())
+            dialogBuilder.setView(editText)
+            dialogBuilder.setPositiveButton("Chat erstellen") { _, _ ->
+
+                val id = editText.text.toString()
+                viewmodel.createChat(id)
+
+            }
+            dialogBuilder.setNegativeButton("Abbrechen") { _,_->
+
+            }
+
+            dialogBuilder.show()
         }
     }
 
